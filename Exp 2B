@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To Do List</title>
+<style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    #text-list { margin-top: 20px; list-style-type: disc; padding-left: 20px; }
+    .text-item { background-color: #f0f0f0; padding: 5px; margin: 5px 0; border-radius: 5px; }
+    button { margin-right: 5px; }
+</style>
+</head>
+<body>
+<h2>To Do List</h2>
+<input type="text" id="input-text" placeholder="Enter something!!" onkeydown="if(event.key === 'Enter') addText()">
+<button onclick="addText()">Add</button>
+<button onclick="clearText()">Clear</button>
+<ul id="text-list"></ul>
+<script>
+    function addText() {
+        const input = document.getElementById("input-text");
+        const textList = document.getElementById("text-list");
+        if (input.value.trim() !== "") {
+            const li = document.createElement("li");
+            li.className = "text-item";
+            li.textContent = input.value;
+            textList.appendChild(li);
+            input.value = "";
+        }
+    }
+    function clearText() {
+        document.getElementById("text-list").innerHTML = "";
+    }
+</script>
+</body>
+</html>
