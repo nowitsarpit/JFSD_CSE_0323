@@ -1,0 +1,24 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<meta charset="UTF-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>Alliance University</title> 
+</head> 
+<body> 
+    <h1>Alliance University</h1> 
+    <img src="Alliance.png" alt="Alliance University Logo" width="200" height="200"> 
+    <p>Alliance University is located in Bengaluru, Karnataka, India.<br>     
+        Alliance University is known for its emphasis on academic excellence, research, and holistic 
+education.   
+    </p> 
+    <h2>Related Websites:</h2> 
+    <ul> 
+        <li><a href="https://www.alliance.edu.in" target="_blank">Official Website</a></li> 
+        <li><a href="https://www.alliance.edu.in/schools/school-of-engineering-and-design" 
+target="_blank">School of Engineering and Design</a></li> 
+        <li><a href="https://www.alliance.edu.in/schools/school-of-law" target="_blank">School of 
+Law</a></li> 
+    </ul> 
+</body> 
+</html>
