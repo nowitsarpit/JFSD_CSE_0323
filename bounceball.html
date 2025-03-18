@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bouncing Ball Animation</title>
+
+  <style>
+    /* Reset some default styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #f0f0f0;
+    }
+
+    /* Header */
+    header {
+      padding: 2rem 0 0.5rem;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: #ffffff;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Main Container */
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .container {
+      width: 500px;
+      height: 500px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      position: relative;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+    }
+
+    /* The Ball */
+    .ball {
+      width: 50px;
+      height: 50px;
+      background: radial-gradient(circle at 30% 30%, #ff6f61, #d62828);
+      border-radius: 50%;
+      position: absolute;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+      transition: background 0.3s;
+    }
+
+    /* Footer */
+    footer {
+      padding: 1rem 0;
+    }
+
+    footer p {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .container {
+        width: 90%;
+        height: 400px;
+      }
+
+      header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Dynamic Bouncing Ball</h1>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="ball"></div>
+    </div>
+  </main>
+  <script>
+    const ball = document.querySelector('.ball');
+    const container = document.querySelector('.container');
+
+    let posX = Math.random() * (container.offsetWidth - ball.offsetWidth);
+    let posY = Math.random() * (container.offsetHeight - ball.offsetHeight);
+
+    // Random velocities between -5 and 5 (excluding zero)
+    let velX = (Math.random() * 4) + 1;
+    let velY = (Math.random() * 4) + 2;
+
+    // Randomize direction
+    velX *= Math.random() < 0.5 ? -1 : 1;
+    velY *= Math.random() < 0.5 ? -1 : 1;
+
+    const ballWidth = ball.offsetWidth;
+    const ballHeight = ball.offsetHeight;
+    const containerWidth = container.offsetWidth;
+    const containerHeight = container.offsetHeight;
+
+    function animate() {
+      posX += velX;
+      posY += velY;
+
+      // Bounce off left/right walls
+      if (posX + ballWidth >= containerWidth || posX <= 0) {
+        velX *= -1;
+        randomizeSpeed();
+      }
+
+      // Bounce off top/bottom walls
+      if (posY + ballHeight >= containerHeight || posY <= 0) {
+        velY *= -1;
+        randomizeSpeed();
+      }
+
+      // Apply position to ball
+      ball.style.left = posX + 'px';
+      ball.style.top = posY + 'px';
+
+      requestAnimationFrame(animate);
+    }
+
+    function randomizeSpeed() {
+      // Optional: Add small randomness after bounce to avoid straight lines
+      velX += (Math.random() - 0.5) * 0.5; // tweak the value to control randomness
+      velY += (Math.random() - 0.5) * 0.5;
+    }
+
+    animate();
+  </script>
+
+</body>
+</html>
